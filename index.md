@@ -117,3 +117,9 @@ Where:
 - $j$: Output channel index at layer $k+1$ (new features created by learning).
 
 In summary: **“Each input channel $i$ is adjusted (filtered) by frequency, then combined to create output channel $j$”**—this is precisely spectral convolution.
+
+## Additional Notes on Spectral Convolution
+
+When the spectral convolution formula is applied to grid-like data, such as images, it aligns with the mathematical formulation of standard Convolutional Neural Networks (CNNs). This means that CNNs are a special case of spectral convolution, and the correctness of the spectral convolution framework is supported by this equivalence.
+
+In spectral convolution, the filter $F$ requires one parameter for each coefficient to scale the frequency components, corresponding to the number of nodes $n$ in the graph. This results in a computational complexity of $O(n)$ for the filtering process. However, by using smooth spectral multipliers (interpolated with cubic splines), we can achieve similar behavior by setting only a small subset of parameters, reducing the computational complexity to $O(1)$.
