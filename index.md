@@ -123,3 +123,31 @@ In summary: **“Each input channel $i$ is adjusted (filtered) by frequency, the
 When the spectral convolution formula is applied to grid-like data, such as images, it aligns with the mathematical formulation of standard Convolutional Neural Networks (CNNs). This means that CNNs are a special case of spectral convolution, and the correctness of the spectral convolution framework is supported by this equivalence.
 
 In spectral convolution, the filter $F$ requires one parameter for each coefficient to scale the frequency components, corresponding to the number of nodes $n$ in the graph. This results in a computational complexity of $O(n)$ for the filtering process. However, by using smooth spectral multipliers (interpolated with cubic splines), we can achieve similar behavior by setting only a small subset of parameters, reducing the computational complexity to $O(1)$.
+
+
+## My Implementation & Results
+
+I implemented a spectral convolution neural network based on the paper.
+
+### Key Features
+- **Graph Generation**: Created random undirected weighted graphs (10 nodes each) with sparse adjacency matrices to simulate diverse graph structures.
+- **Graph Laplacian and Fourier Transform**: Computed the graph Laplacian \( L = D - W \) and performed eigendecomposition to obtain eigenvectors and eigenvalues for spectral convolution.
+- **Spectral Convolution Layer**: Designed a `SpectralConv` layer in PyTorch, with learnable filter parameters applied in the spectral domain, followed by ReLU activation.
+- **Network Architecture**: Built a two-layer `SpectralNet` model, processing input signals (1 channel) to hidden (4 channels) and output (1 channel).
+- **Dataset**: Generated a synthetic dataset of 100 graphs, where each graph has a noisy input signal (Gaussian noise, \(\sigma=0.5\)) and a smooth ground truth signal constructed from low-frequency components.
+- **Training**: Trained the model for 100 epochs using the Adam optimizer (learning rate 0.01) and Mean Squared Error (MSE) loss to predict smooth signals from noisy inputs.
+
+### Results
+The model successfully learned to denoise graph signals, as demonstrated by the following:
+- **Training Loss**: The MSE loss decreased steadily over 100 epochs, converging to approximately 0.1098, indicating effective learning of the spectral filters.
+
+![alt text](image-1.png)
+
+- **Signal Prediction**: The model accurately predicted smooth signals from noisy inputs. Below is a plot showing the input (noisy), ground truth (smooth), and predicted signals for three test graphs:
+
+![alt text](image.png)
+
+- The blue line (Input, Noisy) shows the noisy input signal.
+- The orange line (Ground Truth, Smooth) represents the ideal smooth signal.
+- The green line (Predicted, Smooth) shows the model's output, closely matching the ground truth in most cases.
+- **Average Test Loss**: The average MSE on 3 test graphs was approximately 0.015, confirming the model's generalization to unseen graphs.
