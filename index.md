@@ -151,4 +151,3 @@ The model successfully learned to denoise graph signals, as demonstrated by the 
 - The blue line (Input, Noisy) shows the noisy input signal.
 - The orange line (Ground Truth, Smooth) represents the ideal smooth signal.
 - The green line (Predicted, Smooth) shows the model's output, closely matching the ground truth in most cases.
-- **Average Test Loss**: The average MSE on 3 test graphs was approximately 0.015, confirming the model's generalization to unseen graphs.
