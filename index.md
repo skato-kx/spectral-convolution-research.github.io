@@ -20,7 +20,8 @@ title: My Spectral Convolution Summary
 
 # My Spectral Convolution Summary
 
-In order to better understand spectral convolution—a concept I struggled with when summarizing the previous GCN paper—I decided to read a new paper [](https://arxiv.org/abs/1312.6203). CNNs are known to be highly effective for data that is arranged in a regular grid, such as images and audio. This is largely due to their ability to exploit translational invariance, which allows the same filter with shared weights to slide across the entire input and detect consistent patterns regardless of their position. CNNs also benefit from local filtering and parameter sharing, further improving efficiency.
+In order to better understand spectral convolution—a concept I struggled with when summarizing the previous GCN paper—I decided to read a new paper[Spectral Networks and Deep Locally Connected
+Networks on Graphs](https://arxiv.org/abs/1312.6203) and implement a spectral convolution neural network myself [View my implementation](https://github.com/skato-kx/spectral-convolution-research.github.io). CNNs are known to be highly effective for data that is arranged in a regular grid, such as images and audio. This is largely due to their ability to exploit translational invariance, which allows the same filter with shared weights to slide across the entire input and detect consistent patterns regardless of their position. CNNs also benefit from local filtering and parameter sharing, further improving efficiency.
 
 However, for data that does not possess a regular grid structure—such as social networks or 3D meshes used in physics simulations—CNNs cannot perform convolution based on spatial locality in the same way. An alternative definition of convolution is therefore required.
 
